@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #131519;
+}
+
+#root {
+  padding: 2rem;
+  text-align: center;
+  margin: auto;
+  max-width: 800px;
+}
+
+@font-face {
+  font-family: "Geist-Bold";
+  src: url("/Geist-Bold.otf");
+}
+
+.geist-bold {
+  font-family: Geist-Bold;
+}
+
+@font-face {
+  font-family: "Geist-Regular";
+  src: url("/Geist-Regular.otf");
+}
+
+.geist-regular {
+  font-family: Geist-Regular;
+}
