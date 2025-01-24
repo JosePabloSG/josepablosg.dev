@@ -1,12 +1,12 @@
-import projectImage from '@/public/projects/landing-page.png';
+import projectImage from '@/public/projects/shrinkily-app.png';
 import Project from '../project';
 
 export default function FirstProject() {
     return (
         <Project
-            projectName='Landing Page'
+            projectName='Shrinkily app'
             projectImage={projectImage}
-            backgroundColor='bg-green-100'
+            backgroundColor='bg-purple-100'
         />
     );
 }
