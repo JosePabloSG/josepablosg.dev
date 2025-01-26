@@ -3,7 +3,8 @@
 import { useMounted } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
-import { FaMoon, FaSun } from 'react-icons/fa6';
+import { MoonStar, Sun } from 'lucide-react';
+
 
 export default function ThemeToggle() {
     const isMounted = useMounted();
@@ -29,7 +30,7 @@ export default function ThemeToggle() {
                         ? 'translate-x-full bg-dark-700'
                         : 'bg-yellow-500'
                 )}>
-                {theme === 'dark' ? <FaMoon /> : <FaSun />}
+                {theme === 'dark' ? <MoonStar /> : <Sun />}
             </div>
         </button>
     );
