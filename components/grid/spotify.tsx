@@ -3,6 +3,7 @@
 import { FaSpotify } from "react-icons/fa6"
 import useSWR from "swr"
 import Card from "../ui/card"
+import Image from "next/image"
 
 interface Spotify {
     isPlaying: boolean
@@ -77,7 +78,16 @@ export default function Spotify() {
 
     return (
         <Card className="relative h-full overflow-hidden">
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${data?.albumImageUrl})` }} />
+            {data?.albumImageUrl && (
+                <Image
+                    src={data.albumImageUrl}
+                    alt={data.album}
+                    fill
+                    priority
+                    className="absolute inset-0 object-cover"
+                    style={{ filter: 'brightness(0.5)' }}
+                />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent" />
             <div className="relative z-10 flex h-full flex-col justify-between gap-3 p-8">
                 <div className="relative">
