@@ -1,85 +1,94 @@
-'use client';
+"use client"
 
-import { FaSpotify } from 'react-icons/fa6';
-import useSWR from 'swr';
-import Card from '../ui/card';
+import { FaSpotify } from "react-icons/fa6"
+import useSWR from "swr"
+import Card from "../ui/card"
 
 interface Spotify {
-    isPlaying: boolean;
-    title: string;
-    album: string;
-    artist: string;
-    albumImageUrl: string;
-    songUrl: string;
+    isPlaying: boolean
+    title: string
+    album: string
+    artist: string
+    albumImageUrl: string
+    songUrl: string
 }
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 const NowPlayingLoading = () => (
-    <div className='flex flex-col gap-2'>
-        <div className='flex items-center gap-2'>
-            <div className='h-4 animate-pulse rounded-md bg-gray-300'>
-                <span className='invisible'>Now Playing</span>
+    <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+            <div className="h-4 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700">
+                <span className="invisible">Now Playing</span>
             </div>
         </div>
-        <div className='h-6 animate-pulse rounded-md bg-gray-300'>
-            <span className='invisible'>Song Title</span>
+        <div className="h-6 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700">
+            <span className="invisible">Song Title</span>
         </div>
-        <div className='h-4 animate-pulse rounded-md bg-gray-300'>
-            <span className='invisible'>Artist</span>
+        <div className="h-4 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700">
+            <span className="invisible">Artist</span>
         </div>
     </div>
-);
+)
 
 function NowPlaying() {
-    const { data, isLoading, error } = useSWR<Spotify>(`/api/now-playing`, fetcher);
+    const { data, isLoading, error } = useSWR<Spotify>(`/api/now-playing`, fetcher)
 
-    if (isLoading) return <NowPlayingLoading />;
+    if (isLoading) return <NowPlayingLoading />
 
-    if (error) return <p className='text-red-500'>Failed to load</p>;
+    if (error) return <p className="text-red-500">Failed to load</p>
 
     return (
-        <div className='space-y-1'>
-            <div className='flex items-center gap-3'>
+        <div className="space-y-1">
+            <div className="flex items-center gap-3">
                 {data?.isPlaying && (
-                    <div className='inline-flex items-center justify-center gap-1'>
-                        <div className='w-1 animate-[playing_0.85s_ease_infinite] rounded-full bg-[#1DB954]' />
-                        <div className='w-1 animate-[playing_1.26s_ease_infinite] rounded-full bg-[#1DB954]' />
-                        <div className='w-1 animate-[playing_0.62s_ease_infinite] rounded-full bg-[#1DB954]' />
+                    <div className="inline-flex items-center justify-center gap-1">
+                        <div className="w-1 animate-[playing_0.85s_ease_infinite] rounded-full bg-[#1DB954]" />
+                        <div className="w-1 animate-[playing_1.26s_ease_infinite] rounded-full bg-[#1DB954]" />
+                        <div className="w-1 animate-[playing_0.62s_ease_infinite] rounded-full bg-[#1DB954]" />
                     </div>
                 )}
-                <p className='text-sm'>
-                    {data?.isPlaying ? 'Now Playing' : 'Offline. Last Played'}
+                <p className="text-sm text-white dark:text-gray-200">
+                    {data?.isPlaying ? "Now Playing" : "Offline. Last Played"}
                 </p>
             </div>
             <h2
-                className='line-clamp-3 font-calistoga text-2xl md:line-clamp-1 lg:line-clamp-3'
-                title={data?.title}>
+                className="line-clamp-3 font-calistoga text-2xl md:line-clamp-1 lg:line-clamp-3 text-white dark:text-gray-100"
+                title={data?.title}
+            >
                 <a
-                    href={data?.songUrl ?? '#'}
-                    target='_blank'
-                    rel='nofollow noopener noreferrer'
-                    className='cancel-drag'>
+                    href={data?.songUrl ?? "#"}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="cancel-drag hover:underline"
+                >
                     {data?.title}
                 </a>
             </h2>
-            <p className='truncate font-medium' title={data?.artist}>
+            <p className="truncate font-medium text-white dark:text-gray-200" title={data?.artist}>
                 {data?.artist}
             </p>
         </div>
-    );
+    )
 }
 
 export default function Spotify() {
+    const { data } = useSWR<Spotify>(`/api/now-playing`, fetcher)
+
     return (
-        <Card className='flex h-full flex-col justify-between gap-3 p-8'>
-            <div className='relative'>
-                <FaSpotify
-                    className='size-14 md:absolute md:right-0 md:top-0 md:size-10 lg:relative lg:size-14'
-                    color='#1DB954'
-                />
+        <Card className="relative h-full overflow-hidden">
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${data?.albumImageUrl})` }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent" />
+            <div className="relative z-10 flex h-full flex-col justify-between gap-3 p-8">
+                <div className="relative">
+                    <FaSpotify
+                        className="size-14 md:absolute md:right-0 md:top-0 md:size-10 lg:relative lg:size-14"
+                        color="#1DB954"
+                    />
+                </div>
+                <NowPlaying />
             </div>
-            <NowPlaying />
         </Card>
-    );
+    )
 }
+
