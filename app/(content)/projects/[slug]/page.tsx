@@ -2,6 +2,7 @@ import Container from '@/components/container';
 import GridLayout from '@/components/grid-layout';
 import { CustomMDX } from '@/components/mdx';
 import Anchor from '@/components/ui/anchor';
+import { Badge } from '@/components/ui/badge';
 import Card from '@/components/ui/card';
 import { lgLayout, smLayout } from '@/config/project-layout';
 import { siteConfig } from '@/config/site';
@@ -20,6 +21,7 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
     const { slug } = await params;
 
     const project = getAllProjects().find((project) => project.slug === slug);
+
     if (!project) return;
 
     const { title, description } = project.metadata;
@@ -102,6 +104,30 @@ const ProjectPage = async ({ params }: { params: Params }) => {
                                     </Anchor>
                                 )
                             )}
+                        </div>
+                        <div className="mt-6">
+                            <h2 className="font-calistoga text-2xl leading-relaxed">Technologies</h2>
+                            <div className="flex flex-wrap gap-2" aria-label="Project technologies">
+                                {project.metadata.technologies &&
+                                    JSON.parse(project.metadata.technologies)?.map(
+                                        (tech: {
+                                            name: string
+                                            icon: string
+                                        }) => (
+                                            <Badge key={tech.name}>
+                                                <Image
+                                                    src={tech.icon || "/placeholder.svg"}
+                                                    alt=""
+                                                    width={16}
+                                                    height={16}
+                                                    className="object-contain"
+                                                    aria-hidden="true"
+                                                />
+                                                <span>{tech.name}</span>
+                                            </Badge>
+                                        ),
+                                    )}
+                            </div>
                         </div>
                     </div>
                     <article className='prose dark:prose-invert'>
