@@ -106,7 +106,7 @@ const ProjectPage = async ({ params }: { params: Params }) => {
                             )}
                         </div>
                         <div className="mt-6">
-                            <h2 className="font-calistoga text-2xl leading-relaxed">Technologies</h2>
+                            <h2 className="font-calistoga text-2xl leading-relaxed pb-2">Technologies</h2>
                             <div className="flex flex-wrap gap-2" aria-label="Project technologies">
                                 {project.metadata.technologies &&
                                     JSON.parse(project.metadata.technologies)?.map(
