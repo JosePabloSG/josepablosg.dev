@@ -17,32 +17,27 @@ interface Spotify {
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 const NowPlayingLoading = () => (
-    <div className="flex flex-col gap-2 animate-pulse">
-        <div className="h-4 w-24 rounded-md bg-gray-300 dark:bg-gray-700" />
-        <div className="h-6 w-48 rounded-md bg-gray-300 dark:bg-gray-700" />
-        <div className="h-4 w-32 rounded-md bg-gray-300 dark:bg-gray-700" />
+    <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+            <div className="h-4 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700">
+                <span className="invisible">Now Playing</span>
+            </div>
+        </div>
+        <div className="h-6 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700">
+            <span className="invisible">Song Title</span>
+        </div>
+        <div className="h-4 animate-pulse rounded-md bg-gray-300 dark:bg-gray-700">
+            <span className="invisible">Artist</span>
+        </div>
     </div>
 )
 
 function NowPlaying() {
-    const { data, isLoading } = useSWR<Spotify>(
-        '/api/now-playing',
-        fetcher,
-        {
-            refreshInterval: 30000,
-            revalidateOnFocus: false,
-            fallbackData: {
-                isPlaying: false,
-                title: 'Loading...',
-                album: '',
-                artist: 'No Artist',
-                albumImageUrl: '',
-                songUrl: '#'
-            }
-        }
-    )
+    const { data, isLoading, error } = useSWR<Spotify>(`/api/now-playing`, fetcher)
 
     if (isLoading) return <NowPlayingLoading />
+
+    if (error) return <p className="text-red-500">Failed to load</p>
 
     return (
         <div className="space-y-1">
@@ -79,12 +74,10 @@ function NowPlaying() {
 }
 
 export default function Spotify() {
-    const { data } = useSWR<Spotify>('/api/now-playing', fetcher, {
-        revalidateIfStale: false
-    })
+    const { data } = useSWR<Spotify>(`/api/now-playing`, fetcher)
 
     return (
-        <Card className="relative h-full overflow-hidden transition-opacity duration-300">
+        <Card className="relative h-full overflow-hidden">
             {data?.albumImageUrl && (
                 <Image
                     src={data.albumImageUrl}
@@ -93,7 +86,6 @@ export default function Spotify() {
                     priority
                     className="absolute inset-0 object-cover"
                     style={{ filter: 'brightness(0.5)' }}
-                    sizes="(max-width: 768px) 50vw, 33vw"
                 />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent" />

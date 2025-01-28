@@ -1,112 +1,105 @@
 import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
-import {
-    SpotifyApi,
-    SPOTIFY_NOW_PLAYING_URL,
-    SPOTIFY_RECENTLY_PLAYED_URL,
-    tokenManager,
-    fetchWithTimeout,
-    formatResponse,
-} from '@config/route.config';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
-const API_TIMEOUT = 2000;
-const CACHE_DURATION = 30000;
-const responseCache = new Map<
-    string,
-    { data: SpotifyApi; timestamp: number }
->();
-let prefetchInitiated = false;
-
-async function safeJsonParse<T>(response: Response): Promise<T | null> {
-    try {
-        const text = await response.text();
-        return text ? JSON.parse(text) : null;
-    } catch (error) {
-        return null;
-    }
+interface SpotifyTrack {
+    name: string;
+    album: {
+        name: string;
+        artists: Array<{ name: string }>;
+        images: Array<{ url: string }>;
+    };
+    external_urls: {
+        spotify: string;
+    };
 }
 
-async function fetchSpotifyData(
+interface SpotifyApi {
+    is_playing: boolean;
+    currently_playing_type?: string;
+    item?: SpotifyTrack;
+    items?: Array<{ track: SpotifyTrack }>;
+}
+
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN ?? '';
+const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
+const SPOTIFY_NOW_PLAYING_URL =
+    'https://api.spotify.com/v1/me/player/currently-playing';
+const SPOTIFY_RECENTLY_PLAYED_URL =
+    'https://api.spotify.com/v1/me/player/recently-played?limit=1';
+
+const getBasicToken = () =>
+    Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString(
+        'base64'
+    );
+
+const getAccessToken = async (): Promise<string> => {
+    const response = await fetch(SPOTIFY_TOKEN_URL, {
+        method: 'POST',
+        headers: {
+            Authorization: `Basic ${getBasicToken()}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: SPOTIFY_REFRESH_TOKEN,
+        }).toString(),
+    });
+
+    const data = await response.json();
+    return data.access_token;
+};
+
+const fetchSpotifyData = async (
     url: string,
     accessToken: string
-): Promise<SpotifyApi | null> {
-    try {
-        const response = await fetchWithTimeout(
-            url,
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    'Cache-Control': 'no-cache',
-                },
-                next: { revalidate: 30 },
-            },
-            API_TIMEOUT
-        );
+): Promise<SpotifyApi> => {
+    const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+    });
 
-        return response.ok ? await safeJsonParse<SpotifyApi>(response) : null;
-    } catch (error) {
-        return null;
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data from ${url}`);
     }
-}
+    return response.json();
+};
 
-async function getSpotifyData(): Promise<SpotifyApi> {
-    const headersList = await headers();
-    const cacheKey = headersList.get('x-spotify-cache-key') || 'default';
-
-    if (!prefetchInitiated) {
-        prefetchInitiated = true;
-        await tokenManager.prefetchToken().catch(() => {});
+const formatResponse = (data: SpotifyApi) => {
+    const track = data.item ?? data.items?.[0]?.track;
+    if (!track) {
+        throw new Error('No track data available');
     }
 
-    const cached = responseCache.get(cacheKey);
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-        return cached.data;
-    }
-
-    try {
-        const accessToken = await tokenManager.getAccessToken();
-        const [nowPlaying, recentlyPlayed] = await Promise.all([
-            fetchSpotifyData(SPOTIFY_NOW_PLAYING_URL, accessToken),
-            fetchSpotifyData(SPOTIFY_RECENTLY_PLAYED_URL, accessToken),
-        ]);
-
-        const result = nowPlaying?.is_playing ? nowPlaying : recentlyPlayed;
-        if (result) {
-            responseCache.set(cacheKey, {
-                data: result,
-                timestamp: Date.now(),
-            });
-            return result;
-        }
-    } catch (error) {
-        console.error('Spotify API Error:', error);
-    }
-
-    return cached?.data || ({ is_playing: false } as SpotifyApi);
-}
-
-export const config = {
-    runtime: 'edge',
+    return {
+        isPlaying: data.is_playing || false,
+        title: track.name,
+        album: track.album.name,
+        artist: track.album.artists.map((artist) => artist.name).join(', '),
+        albumImageUrl: track.album.images[0]?.url,
+        songUrl: track.external_urls.spotify,
+    };
 };
 
 export async function GET() {
     try {
-        const data = await getSpotifyData();
-        return NextResponse.json(formatResponse(data), {
-            headers: {
-                'Cache-Control':
-                    'public, s-maxage=60, stale-while-revalidate=30',
-                'CDN-Cache-Control': 'public, s-maxage=3600',
-                'Vercel-CDN-Cache-Control': 'public, s-maxage=3600',
-            },
-        });
+        const accessToken = await getAccessToken();
+        let data = await fetchSpotifyData(SPOTIFY_NOW_PLAYING_URL, accessToken);
+
+        if (!data.is_playing || data.currently_playing_type !== 'track') {
+            data = await fetchSpotifyData(
+                SPOTIFY_RECENTLY_PLAYED_URL,
+                accessToken
+            );
+        }
+
+        return NextResponse.json(formatResponse(data));
     } catch (error) {
-        return NextResponse.json(
-            formatResponse({ is_playing: false } as SpotifyApi),
-            { status: 200, headers: { 'Cache-Control': 'public, s-maxage=10' } }
+        const accessToken = await getAccessToken();
+        const data = await fetchSpotifyData(
+            SPOTIFY_RECENTLY_PLAYED_URL,
+            accessToken
         );
+
+        return NextResponse.json(formatResponse(data));
     }
 }
