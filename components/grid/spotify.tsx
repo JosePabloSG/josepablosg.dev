@@ -33,7 +33,15 @@ const NowPlayingLoading = () => (
 )
 
 function NowPlaying() {
-    const { data, isLoading, error } = useSWR<Spotify>(`/api/now-playing`, fetcher)
+    const { data, isLoading, error } = useSWR<Spotify>(`/api/now-playing`, fetcher,
+        {
+            refreshInterval: (currentData) => currentData?.isPlaying ? 5000 : 30000,
+            dedupingInterval: 5000,
+            revalidateIfStale: false,
+            revalidateOnFocus: false,
+            errorRetryCount: 2
+        }
+    )
 
     if (isLoading) return <NowPlayingLoading />
 
@@ -74,7 +82,13 @@ function NowPlaying() {
 }
 
 export default function Spotify() {
-    const { data } = useSWR<Spotify>(`/api/now-playing`, fetcher)
+    const { data } = useSWR<Spotify>(`/api/now-playing`, fetcher, {
+        refreshInterval: (currentData) => currentData?.isPlaying ? 5000 : 30000,
+        dedupingInterval: 5000,
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        errorRetryCount: 2
+    })
 
     return (
         <Card className="relative h-full overflow-hidden">
