@@ -5,7 +5,7 @@ export default function Card({
     children,
 }: Readonly<{ className?: string; children: React.ReactNode }>) {
     return (
-        <div className='size-full rounded-3xl shadow-sm transition-shadow duration-300 hover:shadow-lg'>
+        <div className='size-full rounded-3xl shadow-xs transition-shadow duration-300 hover:shadow-lg'>
             <div
                 className={cn(
                     'size-full overflow-hidden rounded-3xl',
