@@ -23,7 +23,14 @@ export const SPOTIFY_RECENTLY_PLAYED_URL = 'https://api.spotify.com/v1/me/player
 
 const getBasicToken = () => Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64');
 
+let cachedToken: { token: string; expiresAt: number } | null = null;
+
 export const getAccessToken = async (): Promise<string> => {
+  const now = Date.now();
+  if (cachedToken && now < cachedToken.expiresAt) {
+    return cachedToken.token;
+  }
+
   const response = await fetch(SPOTIFY_TOKEN_URL, {
       method: 'POST',
       headers: {
@@ -37,7 +44,13 @@ export const getAccessToken = async (): Promise<string> => {
   });
 
   if (!response.ok) throw new Error('Failed to refresh access token');
-  const { access_token } = await response.json();
+  const { access_token, expires_in } = await response.json();
+
+  cachedToken = {
+    token: access_token,
+    expiresAt: now + expires_in * 1000 - 30000
+  };
+
   return access_token;
 };
 
