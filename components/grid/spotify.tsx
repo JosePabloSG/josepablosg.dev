@@ -52,9 +52,9 @@ function NowPlaying() {
             <div className="flex items-center gap-3">
                 {data?.isPlaying && (
                     <div className="inline-flex items-center justify-center gap-1">
-                        <div className="w-1 animate-[playing_0.85s_ease_infinite] rounded-full bg-[#1DB954]" />
-                        <div className="w-1 animate-[playing_1.26s_ease_infinite] rounded-full bg-[#1DB954]" />
-                        <div className="w-1 animate-[playing_0.62s_ease_infinite] rounded-full bg-[#1DB954]" />
+                        <div className="w-1 animate-playing rounded-full bg-[#1DB954]" />
+                        <div className="w-1 animate-playing rounded-full bg-[#1DB954]" style={{ animationDuration: "1.26s" }} />
+                        <div className="w-1 animate-playing rounded-full bg-[#1DB954]" style={{ animationDuration: "0.62s" }} />
                     </div>
                 )}
                 <p className="text-sm text-white dark:text-gray-200">
