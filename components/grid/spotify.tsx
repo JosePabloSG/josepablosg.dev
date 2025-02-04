@@ -102,7 +102,7 @@ export default function Spotify() {
                     style={{ filter: 'brightness(0.5)' }}
                 />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent dark:from-black/90 dark:via-black/70 dark:to-transparent" />
             <div className="relative z-10 flex h-full flex-col justify-between gap-3 p-8">
                 <div className="relative">
                     <FaSpotify

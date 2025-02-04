@@ -19,7 +19,7 @@ export default function ThemeToggle() {
 
   return (
     <button
-      className="cancel-drag flex h-10 w-20 items-center rounded-full bg-gray-200 focus:outline-none lg:h-12 lg:w-24"
+      className="cancel-drag flex h-10 w-20 items-center rounded-full bg-gray-200 focus:outline-hidden lg:h-12 lg:w-24"
       onClick={handleToggle}
       aria-label="theme-toggle"
     >
