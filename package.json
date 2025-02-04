@@ -16,7 +16,7 @@
         "framer-motion": "^12.0.5",
         "lucide": "^0.474.0",
         "lucide-react": "^0.474.0",
-        "next": "^15.0.3",
+        "next": "15.1.6",
         "next-mdx-remote": "^5.0.0",
         "next-themes": "^0.3.0",
         "react": "^19.0.0-rc-fb9a90fa48-20240614",
