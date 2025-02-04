@@ -87,7 +87,7 @@ const PostPage = async ({ params }: { params: Params }) => {
                     </time>
                 </small>
             </section>
-            <article className='prose dark:prose-invert space-y-4'>
+            <article className='prose px-4 py-8 dark:prose-invert space-y-4'>
                 <CustomMDX source={post.content} />
             </article>
         </div>
