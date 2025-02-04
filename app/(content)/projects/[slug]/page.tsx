@@ -130,7 +130,7 @@ const ProjectPage = async ({ params }: { params: Params }) => {
                             </div>
                         </div>
                     </div>
-                    <article className='prose dark:prose-invert'>
+                    <article className='prose dark:prose-invert space-y-4'>
                         <CustomMDX source={project.content} />
                     </article>
                 </div>
