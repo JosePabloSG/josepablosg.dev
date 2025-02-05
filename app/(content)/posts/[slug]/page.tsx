@@ -78,7 +78,7 @@ const PostPage = async ({ params }: { params: Params }) => {
                 </Anchor>
             </header>
             <section className='text-center'>
-                <h1 className='font-calistoga text-3xl leading-relaxed'>
+                <h1 className='font-spicy-rice text-3xl leading-relaxed'>
                     {post.metadata.title}
                 </h1>
                 <small className='mt-2 text-gray-600 dark:text-gray-400'>

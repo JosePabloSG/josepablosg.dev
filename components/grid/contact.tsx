@@ -5,7 +5,7 @@ import Card from '../ui/card';
 export default function Contacto() {
     return (
         <Card className='flex flex-col justify-center gap-6 p-8'>
-            <h2 className='font-calistoga text-2xl max-md:text-center'>
+            <h2 className='font-spicy-rice text-2xl max-md:text-center'>
                 Have an interesting project in mind? 👋
             </h2>
             <p className='leading-relaxed max-md:hidden'>

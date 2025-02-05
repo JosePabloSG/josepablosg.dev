@@ -82,7 +82,7 @@ const ProjectPage = async ({ params }: { params: Params }) => {
                         <div className='sr-only'>Close</div>
                     </Anchor>
                 </header>
-                <h1 className='font-calistoga text-3xl leading-relaxed'>
+                <h1 className='font-spicy-rice text-3xl leading-relaxed'>
                     {project.metadata.title}
                 </h1>
                 <div className='grid grid-cols-2 gap-10 pb-8 max-md:grid-cols-1'>
@@ -106,7 +106,7 @@ const ProjectPage = async ({ params }: { params: Params }) => {
                             )}
                         </div>
                         <div className="mt-6">
-                            <h2 className="font-calistoga text-2xl leading-relaxed pb-2">Technologies</h2>
+                            <h2 className="font-spicy-rice text-2xl leading-relaxed pb-2">Technologies</h2>
                             <div className="flex flex-wrap gap-2" aria-label="Project technologies">
                                 {project.metadata.technologies &&
                                     JSON.parse(project.metadata.technologies)?.map(

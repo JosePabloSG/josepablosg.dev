@@ -1,4 +1,4 @@
-import { Calistoga, Poppins } from 'next/font/google';
+import {  Poppins, Spicy_Rice } from 'next/font/google';
 
 export const poppins = Poppins({
     weight: ['300', '400', '500', '600', '700'],
@@ -6,8 +6,8 @@ export const poppins = Poppins({
     variable: '--font-poppins',
 });
 
-export const calistoga = Calistoga({
+export const spicy_rice = Spicy_Rice({
     weight: ['400'],
     subsets: ['latin'],
-    variable: '--font-calistoga',
+    variable: '--font-spicy-rice',
 });

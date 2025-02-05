@@ -15,8 +15,8 @@ export default function Description() {
                     priority
                 />
             </div>
-            <p className='text-balance leading-relaxed'>
-                Hi, I'm <span className='font-calistoga text-xl'>José Pablo</span>, a web development student in Costa Rica. I love building software and designing modern experiences.
+            <p className='leading-relaxed'>
+                Hi, I'm <span className='font-spicy-rice text-xl'>José Pablo</span>, a web development student in Costa Rica. I love building software and designing modern experiences.
             </p>
         </Card>
     );
