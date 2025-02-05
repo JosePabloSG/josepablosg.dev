@@ -83,7 +83,7 @@ const PostPage = async ({ params }: { params: Params }) => {
             </article>
             <footer className="mt-4 flex flex-col items-center justify-center space-y-4 prose px-4 py-8 dark:prose-invert flex-grow">
                 <Image src="/logo/Logo.svg" alt="JosePablo Logo" width={60} height={60} />
-                <p className="text-sm text-gray-500 dark:text-gray-400">Designed by José Pablo</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">By José Pablo. </p>
             </footer>
         </div>
     )
