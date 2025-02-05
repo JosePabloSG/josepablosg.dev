@@ -57,10 +57,10 @@ export const getAccessToken = async (): Promise<string> => {
 export const fetchSpotifyData = async (url: string, accessToken: string): Promise<SpotifyApiResponse> => {
   const response = await fetch(url, {
       headers: { Authorization: `Bearer ${accessToken}` },
-      next: { revalidate: 1 } // Cache de 1 segundo
+      next: { revalidate: 1 } 
   });
 
-  if (response.status === 204) return { is_playing: false }; // No content
+  if (response.status === 204) return { is_playing: false }; 
   if (!response.ok) throw new Error(`Spotify API error: ${response.statusText}`);
   
   return response.json();
