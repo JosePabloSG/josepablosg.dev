@@ -58,7 +58,7 @@ function SpotifyTrackInfo() {
                 </p>
             </div>
             <h2
-                className="line-clamp-2 font-abril-fatface text-2xl text-white dark:text-gray-100 md:text-3xl"
+                className="line-clamp-2 font-calistoga text-2xl text-white dark:text-gray-100 md:text-3xl"
                 title={data?.title}
             >
                 <a href={data?.songUrl ?? "#"} target="_blank" rel="nofollow noopener noreferrer" className="hover:underline">

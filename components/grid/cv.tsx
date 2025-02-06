@@ -4,7 +4,7 @@ import Card from '../ui/card';
 export default function Cv() {
     return (
         <Card className='flex flex-col justify-center gap-6 p-8'>
-            <h2 className='font-abril-fatface text-2xl max-md:text-center'>
+            <h2 className='font-calistoga text-2xl max-md:text-center'>
                 Want to know more about me? 🤔
             </h2>
             <p className='leading-relaxed max-md:hidden'>
