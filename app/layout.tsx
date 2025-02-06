@@ -1,5 +1,5 @@
 import { siteConfig } from '@/config/site';
-import {  poppins, spicy_rice } from '@/lib/fonts';
+import { abril_fatface, poppins } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
@@ -51,7 +51,7 @@ export default function RootLayout({
             <body
                 className={cn(
                     poppins.className,
-                    spicy_rice.variable,
+                    abril_fatface.variable,
                     'bg-gray-100 antialiased dark:bg-dark-950'
                 )}>
                 <ThemeProvider attribute='class' enableSystem={false}>

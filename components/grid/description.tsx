@@ -16,7 +16,7 @@ export default function Description() {
                 />
             </div>
             <p className='leading-relaxed'>
-                Hi, I'm <span className='font-spicy-rice text-xl'>José Pablo</span>, a web development student in Costa Rica. I love building software and designing modern experiences.
+                Hi, I'm <span className='font-abril-fatface text-xl'>José Pablo</span>, a web development student in Costa Rica. I love building software and designing modern experiences.
             </p>
         </Card>
     );

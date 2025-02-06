@@ -11,7 +11,7 @@ export default function Article() {
 
     return (
         <Card className='flex flex-col justify-center gap-6 p-8'>
-            <h2 className='font-spicy-rice truncate text-2xl' title={post.metadata.title}>
+            <h2 className='font-abril-fatface truncate text-2xl' title={post.metadata.title}>
                 <Link href={`/posts/${post.slug}`} className='cancel-drag'>
                     {post.metadata.title}
                 </Link>

@@ -21,8 +21,8 @@ export default function NotFound() {
                         : '-translate-y-6 opacity-0',
                     'transition-[opacity,_transform] duration-700'
                 )}>
-                <h1 className='font-spicy-rice text-7xl md:text-9xl'>404</h1>
-                <h2 className='font-spicy-rice text-xl md:text-3xl'>
+                <h1 className='font-abril-fatface text-7xl md:text-9xl'>404</h1>
+                <h2 className='font-abril-fatface text-xl md:text-3xl'>
                     Page Not Found
                 </h2>
                 <p>Sorry, we couldn&apos;t find what you were looking for.</p>

@@ -1,4 +1,4 @@
-import {  Poppins, Spicy_Rice } from 'next/font/google';
+import {  Abril_Fatface, Poppins } from 'next/font/google';
 
 export const poppins = Poppins({
     weight: ['300', '400', '500', '600', '700'],
@@ -6,8 +6,8 @@ export const poppins = Poppins({
     variable: '--font-poppins',
 });
 
-export const spicy_rice = Spicy_Rice({
+export const abril_fatface = Abril_Fatface({
     weight: ['400'],
     subsets: ['latin'],
-    variable: '--font-spicy-rice',
+    variable: '--font-abril-fatface',
 });
