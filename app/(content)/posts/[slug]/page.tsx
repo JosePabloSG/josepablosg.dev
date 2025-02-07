@@ -7,6 +7,8 @@ import { notFound } from "next/navigation"
 import Script from "next/script"
 import { FaX } from "react-icons/fa6"
 import Image from "next/image"
+import Container from "@/components/container"
+import Link from "next/link"
 
 type Params = Promise<{ slug: string }>
 
@@ -81,9 +83,18 @@ const PostPage = async ({ params }: { params: Params }) => {
             <article className="prose px-4 py-8 dark:prose-invert space-y-4 flex-grow">
                 <CustomMDX source={post.content} />
             </article>
-            <footer className="mt-4 flex flex-col items-center justify-center space-y-4 prose px-4 py-8 dark:prose-invert flex-grow">
-                <Image src="/logo/Logo.svg" alt="JosePablo Logo" width={60} height={60} />
-                <p className="text-sm text-gray-500 dark:text-gray-400">By José Pablo. </p>
+            <footer className="py-4">
+                <Container as="footer" className="flex justify-center items-center">
+                    <div className="flex items-center space-x-2">
+                        <Image src="/logo/Logo.svg" alt="José Pablo Logo" width={24} height={24} />
+                        <p className="text-sm text-muted-foreground">
+                            © 2025 José Pablo - Inspired by{" "}
+                            <Link href="https://nevflynn.com/" className="underline hover:text-primary">
+                                NevFlynn
+                            </Link>
+                        </p>
+                    </div>
+                </Container>
             </footer>
         </div>
     )
