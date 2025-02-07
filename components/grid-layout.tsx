@@ -9,9 +9,6 @@ import {
     Responsive,
     WidthProvider,
 } from 'react-grid-layout';
-import Container from './container';
-import Image from 'next/image';
-import Link from 'next/link';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -58,19 +55,6 @@ export default function GridLayout({
             <ResponsiveGridLayout margin={[16, 16]} {...responsiveProps}>
                 {children}
             </ResponsiveGridLayout>
-            <footer className="py-4">
-                <Container className="flex justify-center items-center">
-                    <div className="flex items-center space-x-2">
-                        <Image src="/logo/Logo.svg" alt="José Pablo Logo" width={24} height={24} />
-                        <p className="text-sm text-muted-foreground">
-                            © 2025 José Pablo - Inspired by{" "}
-                            <Link href="https://nevflynn.com/" className="underline hover:text-primary">
-                                NevFlynn
-                            </Link>
-                        </p>
-                    </div>
-                </Container>
-            </footer>
         </section>
     );
 }
