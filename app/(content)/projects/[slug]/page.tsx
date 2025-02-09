@@ -113,18 +113,26 @@ const ProjectPage = async ({ params }: { params: Params }) => {
                                         (tech: {
                                             name: string
                                             icon: string
+                                            link: string
                                         }) => (
-                                            <Badge key={tech.name}>
-                                                <Image
-                                                    src={tech.icon || "/placeholder.svg"}
-                                                    alt=""
-                                                    width={16}
-                                                    height={16}
-                                                    className="object-contain"
-                                                    aria-hidden="true"
-                                                />
-                                                <span>{tech.name}</span>
-                                            </Badge>
+                                            <a
+                                                key={tech.name}
+                                                href={tech.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <Badge>
+                                                    <Image
+                                                        src={tech.icon || "/placeholder.svg"}
+                                                        alt={tech.name}
+                                                        width={16}
+                                                        height={16}
+                                                        className="object-contain"
+                                                        aria-hidden="true"
+                                                    />
+                                                    <span>{tech.name}</span>
+                                                </Badge>
+                                            </a>
                                         ),
                                     )}
                             </div>
