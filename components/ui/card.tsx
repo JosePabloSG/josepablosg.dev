@@ -10,7 +10,6 @@ export default function Card({
                 className={cn(
                     'size-full overflow-hidden rounded-3xl',
                     'bg-white dark:bg-dark-900',
-                    'cursor-grab select-none active:cursor-grabbing',
                     'dark:ring-1 dark:ring-dark-800',
                     className
                 )}>
