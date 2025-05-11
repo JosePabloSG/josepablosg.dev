@@ -10,7 +10,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   // Simple fade/scale animation using Tailwind classes
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center pointer-events-none transition-all duration-300 ${open ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${open ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}
       aria-modal="true"
       role="dialog"
       style={{ background: 'transparent' }}
