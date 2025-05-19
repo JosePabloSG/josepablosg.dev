@@ -6,8 +6,8 @@ interface CvDownloadModalProps {
 }
 
 const files = [
-  { label: 'CV in English', href: '/CV-JOSEPABLO-EN.pdf' },
-  { label: 'CV in Spanish', href: '/CV-JOSEPABLO-ES.pdf' },
+  { label: 'CV in English', href: '/CV-EN.pdf' },
+  { label: 'CV in Spanish', href: '/CV-ES.pdf' },
 ];
 
 const downloadBoth = () => {
