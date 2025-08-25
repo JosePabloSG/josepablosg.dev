@@ -86,13 +86,30 @@ const PostPage = async ({ params }: { params: Params }) => {
             <footer className="py-4">
                 <Container as="footer" className="flex justify-center items-center">
                     <div className="flex items-center space-x-2">
-                        <Image src="/logo/Logo.svg" alt="José Pablo Logo" width={24} height={24} />
-                        <p className="text-sm text-muted-foreground">
-                            © 2025 José Pablo - Inspired by{" "}
-                            <Link href="https://nevflynn.com/" className="underline hover:text-primary">
+                        <Link href="https://www.hikaricr.tech/" target="_blank" rel="noopener noreferrer" className="relative h-9 w-auto">
+                            <Image
+                                src="/images/powered_by_hikari_light.svg"
+                                alt="Powered by Hikari Light"
+                                width={180}
+                                height={36}
+                                className="block dark:hidden"
+                                priority
+                            />
+                            <Image
+                                src="/images/powered_by_hikari_dark.svg"
+                                alt="Powered by Hikari Dark"
+                                width={180}
+                                height={36}
+                                className="hidden dark:block"
+                                priority
+                            />
+                        </Link>
+                        <span className="text-sm text-muted-foreground">
+                            - Inspired by{" "}
+                            <Link href="https://nevflynn.com/" className="underline hover:text-primary" target="_blank" rel="noopener noreferrer">
                                 NevFlynn
                             </Link>
-                        </p>
+                        </span>
                     </div>
                 </Container>
             </footer>
