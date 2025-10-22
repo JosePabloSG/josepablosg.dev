@@ -16,8 +16,8 @@ export default function Cv() {
             <div className='inline-flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between'>
                 <Anchor
                     className='cancel-drag px-4 py-2'
-                    href='/assets/Jose_Pablo_Suarez_CV_2025.pdf'
-                    download="Jose_Pablo_Suarez_CV_2025.pdf"
+                    href='/assets/JosePablo_CV_2025.pdf'
+                    download="JosePablo_CV_2025.pdf"
                 >
                     <FaArrowRight className='-rotate-45 transition-transform duration-300 group-hover:rotate-0' />
                     Download CV
