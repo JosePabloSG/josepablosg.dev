@@ -1,11 +1,11 @@
-import profile from '@/public/images/profile.png';
+import profile from '@/public/images/Profile.jpg';
 import Image from 'next/image';
 import Card from '../ui/card';
 
 export default function Description() {
     return (
         <Card className='flex flex-col justify-center gap-4 p-8'>
-            <div className='relative size-14 overflow-hidden rounded-full sm:size-16'>
+            <div className='relative size-20 overflow-hidden rounded-full sm:size-24'>
                 <Image
                     src={profile}
                     alt='JosePabloSG'

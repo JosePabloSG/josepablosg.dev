@@ -13,7 +13,7 @@ export default function Cv() {
             <p className='leading-relaxed max-md:hidden'>
                 You can download my CV.
             </p>
-            <div className='inline-flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between'>
+            <div className='inline-flex flex-col items-center gap-6 lg:flex-row'>
                 <Anchor
                     className='cancel-drag px-4 py-2'
                     href='/assets/JosePablo_CV_2025.pdf'
