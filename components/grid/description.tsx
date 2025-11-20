@@ -1,4 +1,4 @@
-import profile from '@/public/images/Profile.jpg';
+import profile from '../../public/images/Profile.jpg';
 import Image from 'next/image';
 import Card from '../ui/card';
 

@@ -1,4 +1,4 @@
-import projectImage from '@/public/projects/shrinkily-app.png';
+import projectImage from '../../public/projects/shrinkily-app.png';
 import Project from '../project';
 
 export default function FirstProject() {

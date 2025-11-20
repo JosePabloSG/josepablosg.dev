@@ -1,4 +1,4 @@
-import projectImage from '@/public/projects/hhrr.webp';
+import projectImage from '../../public/projects/hhrr.webp';
 import Project from '../project';
 
 export default function SecondProject() {
