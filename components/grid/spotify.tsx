@@ -37,7 +37,7 @@ function SpotifyTrackInfo() {
 
     if (isLoading) return <SpotifyTrackSkeleton />
 
-    if (error) return <p className="text-red-500">Failed to load track info</p>
+    if (error) return <p className="text-red-500">Error al cargar la canción</p>
 
     return (
         <div className="space-y-2">
@@ -54,7 +54,7 @@ function SpotifyTrackInfo() {
                     </div>
                 )}
                 <p className="text-sm font-medium text-white dark:text-gray-200">
-                    {data?.isPlaying ? "Now Playing" : "Offline • Last Played"}
+                    {data?.isPlaying ? "Reproduciendo ahora" : "Sin conexión • Última canción"}
                 </p>
             </div>
             <h2

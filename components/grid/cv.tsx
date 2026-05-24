@@ -8,10 +8,10 @@ export default function Cv() {
     return (
         <Card className='flex flex-col justify-center gap-6 p-8'>
             <h2 className='font-calistoga text-2xl max-md:text-center'>
-                Want to know more about me? 🤔
+                ¿Quieres saber más sobre mí? 🤔
             </h2>
             <p className='leading-relaxed max-md:hidden'>
-                You can download my CV.
+                Puedes descargar mi CV.
             </p>
             <div className='inline-flex flex-col items-center gap-6 lg:flex-row'>
                 <Anchor
@@ -20,7 +20,7 @@ export default function Cv() {
                     download="JosePablo_Suarez_CV.pdf"
                 >
                     <FaArrowRight className='-rotate-45 transition-transform duration-300 group-hover:rotate-0' />
-                    Download CV
+                    Descargar CV
                 </Anchor>
             </div>
         </Card>

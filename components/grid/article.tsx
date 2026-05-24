@@ -21,8 +21,8 @@ export default function Article() {
             </p>
             <div className='inline-flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between'>
                 <Anchor className='cancel-drag px-4 py-2' href={`/posts/${post.slug}`}>
-                    <FaArrowRight className='-rotate-45 transition-transform duration-300 group-hover:rotate-0' /> Read
-                    More
+                    <FaArrowRight className='-rotate-45 transition-transform duration-300 group-hover:rotate-0' /> Leer
+                    más
                     <span className='sr-only'>{post.metadata.title}</span>
                 </Anchor>
                 <small className='text-gray-600 dark:text-gray-400'>{formatDate(post.metadata.date)}</small>

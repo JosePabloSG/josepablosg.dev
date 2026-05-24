@@ -23,12 +23,12 @@ export default function NotFound() {
                 )}>
                 <h1 className='font-calistoga text-7xl md:text-9xl'>404</h1>
                 <h2 className='font-calistoga text-xl md:text-3xl'>
-                    Page Not Found
+                    Página no encontrada
                 </h2>
-                <p>Sorry, we couldn&apos;t find what you were looking for.</p>
+                <p>Lo sentimos, no pudimos encontrar lo que buscabas.</p>
                 <Anchor href='/' className='px-4 py-2'>
                     <FaArrowRight className='-rotate-45 transition-transform duration-300 group-hover:-rotate-180' />
-                    Back to Home
+                    Volver al inicio
                 </Anchor>
             </div>
         </Container>

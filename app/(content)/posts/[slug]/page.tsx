@@ -71,7 +71,7 @@ const PostPage = async ({ params }: { params: Params }) => {
             <header className="flex items-center justify-center pb-10">
                 <Anchor className="inline-flex hover:mb-6 hover:scale-125" href="/">
                     <FaX />
-                    <div className="sr-only">Close</div>
+                    <div className="sr-only">Cerrar</div>
                 </Anchor>
             </header>
             <section className="text-center">
@@ -105,7 +105,7 @@ const PostPage = async ({ params }: { params: Params }) => {
                             />
                         </Link>
                         <span className="text-sm text-muted-foreground">
-                            - Inspired by{" "}
+                            - Inspirado en{" "}
                             <Link href="https://nevflynn.com/" className="underline hover:text-primary" target="_blank" rel="noopener noreferrer">
                                 NevFlynn
                             </Link>

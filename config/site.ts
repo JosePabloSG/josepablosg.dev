@@ -1,5 +1,5 @@
 export const siteConfig = {
     title: 'José Pablo',
-    description: 'My goal is to be a frontend developer ',
+    description: 'Desarrollador de software full-stack en Costa Rica, apasionado por construir aplicaciones web escalables.',
     url: 'https://www.josepablosg.dev/',
 };

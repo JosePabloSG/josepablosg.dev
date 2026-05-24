@@ -16,8 +16,8 @@ export default function Description() {
                 />
             </div>
             <p className='leading-relaxed'>
-                Hi, I'm <span className='font-calistoga text-xl'>José Pablo</span>, a full-stack software developer based in Costa Rica.
-                I enjoy building scalable web applications and designing modern digital experiences.
+                Hola, soy <span className='font-calistoga text-xl'>José Pablo</span>, desarrollador de software full-stack en Costa Rica.
+                Me apasiona construir aplicaciones web escalables y diseñar experiencias digitales modernas.
             </p>
         </Card>
     );
